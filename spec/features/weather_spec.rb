@@ -41,4 +41,22 @@ RSpec.describe "Weather Page" do
       expect(page).to have_content("Low: 41°F")
     end
   end
+
+  it "caches results and returns cache values when present" do
+    visit "/"
+
+    expect(page).to have_field("location")
+
+    fill_in :location, with: "London"
+
+    click_button "Submit"
+
+    click_link "Restart"
+
+    fill_in :location, with: "London"
+
+    click_button "Submit"
+
+    expect(page).to have_content("Results pulled from cache")
+  end
 end

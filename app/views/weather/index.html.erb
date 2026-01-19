@@ -25,6 +25,12 @@
         "
       %>
   <% elsif @forecast %>
+    <% if @cached %>
+      <h2 style='color:rgb(0, 174, 255);'>
+        Results pulled from cache
+      </h2>
+    <% end %>
+
     <div id="current" style='display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 12px;' >
       <h2>Today's Weather</h2>
       <p>Current Temperature: <%= @forecast[:current][:temp_f].to_f.round %>°F</p>
