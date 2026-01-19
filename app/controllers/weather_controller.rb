@@ -2,8 +2,15 @@ class WeatherController < ApplicationController
   def index
     if params[:location].present?
       zip = extract_zip(params[:location])
+      unless zip
+        # If address does not have a zip, return the address itself
+        # so that results can still be fetched and cached by the input value
+        zip = params[:location].downcase
+      end
+
       @cached = true
       @forecast = Rails.cache.fetch(zip, expires_in: 30.minutes) do
+        Rails.logger.info("#{zip} forecast not cached. Fetching from WeatherAPI.")
         @cached = false
         WeatherApiService.get_weather(zip)
       end
