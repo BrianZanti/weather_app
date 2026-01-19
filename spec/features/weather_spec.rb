@@ -42,18 +42,18 @@ RSpec.describe "Weather Page" do
     end
   end
 
-  it "caches results and returns cache values when present" do
+  it "caches results by zip code and returns cache values when present" do
     visit "/"
 
     expect(page).to have_field("location")
 
-    fill_in :location, with: "London"
+    fill_in :location, with: "1701 Bryant St, Denver, CO 80204"
 
     click_button "Submit"
 
     click_link "Restart"
 
-    fill_in :location, with: "London"
+    fill_in :location, with: "1605 Federal Blvd, Denver, CO 80204"
 
     click_button "Submit"
 
