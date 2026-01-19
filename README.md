@@ -12,6 +12,7 @@ Then, run the following commands from the root directory:
 
 ```bash
   bundle install
+  rails  webpacker:install
   rails dev:cache
   rails s
 ```
