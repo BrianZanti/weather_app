@@ -6,6 +6,8 @@ This application allows you to input an address to get the current weather and a
 
 If you would like to set up the app locally, first make sure you have Ruby 3.2.3 installed.
 
+**Note:** If you do not have Ruby 3.2.3 installed or do not wish to install it, it is likely that this application code will work with different versions of Ruby 3.x. You can modify the gemfile's `ruby` setting if you would like to try a different version.
+
 Then, run the following commands from the root directory:
 
 ```bash
