@@ -1,0 +1,84 @@
+<div style="min-height: 100vh; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 24px;">
+  <% if @error.present? %>
+      <p
+        style="
+          margin-bottom: 16px;
+          padding: 12px 14px;
+          background-color: #fdecea;
+          color: #b42318;
+          border: 1px solid #f5c2c0;
+          border-radius: 8px;
+          font-size: 14px;
+        "
+      >
+        <%= @error %>
+      </p>
+
+      <%= link_to "Try again", root_path,
+        style: "
+          padding: 12px 14px;
+          background-color: #b42318;
+          color: #ffffff;
+          text-decoration: none;
+          font-size: 14px;
+          border-radius: 6px;
+        "
+      %>
+  <% elsif @forecast %>
+    <div id="current" style='display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 12px;' >
+      <h2>Today's Weather</h2>
+      <p>Current Temperature: <%= @forecast[:current][:temp_f].to_f.round %>°F</p>
+      <p>High: <%= @forecast[:forecast][:forecastday][0][:day][:maxtemp_f].to_f.round %>°F</p>
+      <p>Low: <%= @forecast[:forecast][:forecastday][0][:day][:mintemp_f].to_f.round %>°F</p>
+    </div>
+
+    <div id="three-day" style='display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 12px;'>
+      <h2>Three Day Forecast</h2>
+      <% 3.times do |index| %>
+        <div id="day-<%= index + 1 %>" style='display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 12px;'>
+          <h3>
+            <%= Date.parse(@forecast[:forecast][:forecastday][index + 1][:date]).strftime("%A") %>
+          </h3>
+          <p>
+            <%= @forecast[:forecast][:forecastday][index + 1][:day][:condition][:text] %>
+
+            <img
+              src=<%= @forecast[:forecast][:forecastday][index + 1][:day][:condition][:icon] %>
+              alt="Day One Forecast Icon"
+              width="30"
+              height="30"
+            />
+          </p>
+          <p>High: <%= @forecast[:forecast][:forecastday][index + 1][:day][:maxtemp_f].to_f.round %>°F</p>
+          <p>Low: <%= @forecast[:forecast][:forecastday][index + 1][:day][:mintemp_f].to_f.round %>°F</p>
+        </div>
+      <% end %>
+    </div>
+
+    <%= link_to "Restart", root_path,
+        style: "
+          padding: 12px 14px;
+          background-color:rgb(45, 68, 71);
+          color: #ffffff;
+          text-decoration: none;
+          font-size: 14px;
+          border-radius: 6px;
+        "
+      %>
+  <% else %>
+    <%= form_with url: "/", method: :get, local: true, style: "width: 100%; max-width: 420px;" do |f| %>
+      <%= f.label :location, "Location",
+        style: "display: block; margin-bottom: 8px; font-size: 14px; font-weight: 600;" %>
+
+      <%= f.text_field :location,
+        placeholder: "e.g., London",
+        autocomplete: "off",
+        required: true,
+        style: "width: 100%; padding: 14px 16px; font-size: 16px; border: 1px solid #d0d7de; border-radius: 10px; outline: none; box-sizing: border-box;" %>
+
+      <%= f.submit "Submit",
+        style: "width: 100%; padding: 14px 16px; font-size: 16px; border: 1px solid #d0d7de; border-radius: 10px; outline: none; box-sizing: border-box;" %>
+
+    <% end %>
+  <% end %>
+</div>

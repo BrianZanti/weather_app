@@ -36,10 +36,6 @@ gem 'faraday'
 
 group :development, :test do
   gem "debug"
-
-  gem 'rspec-rails'
-
-  gem 'webmock'
 end
 
 group :development do
@@ -49,6 +45,8 @@ group :development do
   # Can be configured to work on production as well see: https://github.com/MiniProfiler/rack-mini-profiler/blob/master/README.md
   gem 'rack-mini-profiler', '~> 2.0'
   gem 'listen', '~> 3.3'
+
+  gem 'dotenv'
 end
 
 group :test do
@@ -57,6 +55,10 @@ group :test do
   gem 'selenium-webdriver', '>= 4.0.0.rc1'
   # Easy installation and use of web drivers to run system tests with browsers
   gem 'webdrivers'
+
+  gem 'rspec-rails'
+
+  gem 'webmock'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem

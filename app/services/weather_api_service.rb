@@ -6,7 +6,7 @@ class WeatherApiService
     response = Faraday.get("http://api.weatherapi.com/v1/forecast.json", {
       key: ENV.fetch("WEATHER_API_KEY"),
       q: location,
-      days: 3,
+      days: 4,
       aqi: 'no',
       alerts: 'no'
     })
