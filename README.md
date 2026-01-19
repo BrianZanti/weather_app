@@ -4,22 +4,19 @@ This application allows you to input an address to get the current weather and a
 
 ## Local Setup
 
-If you would like to set up the app locally, first make sure you have Ruby 3.2.3 installed.
+#### Installing Ruby
 
-**Note:** If you do not have Ruby 3.2.3 installed or do not wish to install it, it is likely that this application code will work with different versions of Ruby 3.x. You can modify the gemfile's `ruby` setting if you would like to try a different version.
+If you would like to set up the app locally, first make sure you have Ruby 3.2.3 installed:
 
-Then, run the following commands from the root directory:
 
-```bash
-  bundle install
-  rails  webpacker:install
-  rails dev:cache
-  rails s
+```
+ruby -v
+# Should list 3.2.3
 ```
 
-In your web browser, visit `localhost:3000` to view the app.
+**Note:** If you do not have Ruby 3.2.3 installed or do not wish to install it, it is likely that this application code will work with different versions of Ruby 3.x. You can modify the Gemfile's `ruby` setting if you would like to try a different version. Please note that compatability with other versions is not guaranteed.
 
-## WeatherAPI
+#### WeatherAPI Key
 
 This application uses the [Weather API](https://www.weatherapi.com/) to retrieve forecast data.
 
@@ -33,7 +30,20 @@ Once you have your API key, install it by first creating a local file `.env`:
 
 Then, create an Environment Variable called `WEATHER_API_KEY` and set it to your api key. You can find an example of how to format this in `.env.sample`.
 
-You are also free to set up an Environment Variable in your local shell session using your preferred method.
+Alternatively, you can set up an Environment Variable in your local shell session using your preferred method.
+
+#### Install Dependencies
+
+Then, run the following commands from the root directory:
+
+```bash
+  bundle install
+  rails webpacker:install
+  rails dev:cache
+  rails s
+```
+
+In your web browser, visit `localhost:3000` to view the app.
 
 ## Caching
 
