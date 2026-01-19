@@ -59,6 +59,8 @@ The way to solve this problem would be to use a Geocoding service, for example t
 
 Another notable design decision with caching is to perform it at the controller level. This approach has limitations if the application were to grow and have different code paths to performing the API calls. In that case, it would be best to create another layer of abstraction between the controller and API Service levels that can take responsibility for caching. This would ensure that the API Service itself is decoupled from caching and that caching is consistent across different controllers. However, this was not considered in-scope for this exercise.
 
+Note that in the development environment, caching is performed in-memory. This means that the cache will only persist as long as the Rails Server is running. This is not a suitable choice in production and would need to be replaced with a persistent caching mechanism such as [Redis](https://redis.io/) or [MemCached](https://memcached.org/)
+
 ## Tests
 
 This code base includes an RSpec test suite. You can run the test suite locally with:
